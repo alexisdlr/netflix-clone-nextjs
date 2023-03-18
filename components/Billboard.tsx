@@ -3,9 +3,9 @@ import {AiOutlineInfoCircle} from 'react-icons/ai'
 const Billboard = () => {
   const { data } = useBillboard();
   return (
-    <div className="relative h-[70.25vw] md:h-[45.25vw] w-full">
+    <div className="relative h-[70.25vh] md:h-[45.25vw] w-full">
       <video
-        className="w-full object-cover brightness-[60%] h-[70.25vw] md:h-[45.25vw]"
+        className="w-full object-cover brightness-[60%] h-[70.25vh] md:h-[45.25vw]"
         autoPlay
         muted
         loop
