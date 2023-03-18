@@ -58,7 +58,7 @@ const Auth = () => {
                 <Input
                   label="Username"
                   id="name"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
                   value={name}
                 />
               )}
@@ -66,14 +66,14 @@ const Auth = () => {
                 label="Email"
                 id="email"
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                 value={email}
               />
               <Input
                 label="Password"
                 id="password"
                 type="password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 value={password}
               />
             </div>
