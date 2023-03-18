@@ -2,17 +2,15 @@ import Input from "@/components/Input";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 const Auth = () => {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [variant, setVariant] = useState("login");
-
+  
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
       currentVariant === "login" ? "register" : "login"
@@ -24,18 +22,16 @@ const Auth = () => {
       await signIn("credentials", {
         email,
         password,
-        redirect: false,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(async () => {
     try {
-      await axios.post("/api/register", {
+       await axios.post("/api/register", {
         email,
         name,
         password,
@@ -88,14 +84,16 @@ const Auth = () => {
               {variant === "login" ? "Login" : "Sign up"}
             </button>
             <div className="flex items-center justify-center mt-8 gap-4">
-              <div 
-              onClick={() => signIn('google', {callbackUrl: '/'})}
-              className="flex items-center justify-center bg-white hover:opacity-80 cursor-pointer w-10 h-10 rounded-full transition ">
+              <div
+                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
+                className="flex items-center justify-center bg-white hover:opacity-80 cursor-pointer w-10 h-10 rounded-full transition "
+              >
                 <FcGoogle size={30} />
               </div>
               <div
-              onClick={() => signIn('github', {callbackUrl: '/'})}
-              className="flex items-center justify-center bg-white hover:opacity-80 cursor-pointer w-10 h-10 rounded-full transition ">
+                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
+                className="flex items-center justify-center bg-white hover:opacity-80 cursor-pointer w-10 h-10 rounded-full transition "
+              >
                 <FaGithub size={30} />
               </div>
             </div>
